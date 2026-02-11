@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: pagamentos
+          uri: lb://PAGAMENTOS-MS
+          predicates:
+            - Path=/pagamentos-ms/**
+          filters:
+            - StripPrefix=1
+
+        - id: pedidos
+          uri: lb://PEDIDOS-MS
+          predicates:
+            - Path=/pedidos-ms/**
+          filters:
+            - StripPrefix=1
